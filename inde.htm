@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos de Canecas Personalizada</title>
+    <style>
+        /* Adiciona a imagem de fundo */
+        body {
+            background-image: url('pppppppppppppppppppppppppppppppp.jpeg'); /* Substitua pelo caminho correto da sua imagem */
+            background-size: cover; 
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+        }
+        form {
+            background-color: rgba(16, 121, 241, 0); /* Fundo semitransparente */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        input[type="text"], input[type="email"], input[type="file"], select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #25D366; /* Cor do WhatsApp */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        button:hover {
+            background-color: #610b9b;
+        }
+        /* Botão do Facebook */
+        .facebook-btn {
+            background-color: #4267B2; /* Cor do Facebook */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .facebook-btn:hover {
+            background-color: #365899; /* Cor de hover do Facebook */
+        }
+    </style>
+</head>
+<body>
+    <form id="orderForm" onsubmit="sendToWhatsApp(event)">
+        <h2>Pedido de Caneca Personalizada</h2>
+        
+        <!-- Campos do Formulário -->
+        <input type="text" id="name" placeholder="Seu Nome" required>
+        <input type="email" id="email" placeholder="Seu E-mail" required>
+        <input type="text" id="design" placeholder="Descreva a Personalização" required>
+        
+        <!-- Campo para quantidade -->
+        <input type="number" id="quantity" placeholder="Quantidade" min="1" required>
+
+        <!-- Forma de pagamento -->
+        <select id="payment" required>
+            <option value="">Selecione a Forma de Pagamento</option>
+            <option value="Cartão de Crédito">Cartão de Crédito</option>
+            <option value="Boleto">Boleto</option>
+            <option value="Pix">Pix</option>
+        </select>
+        
+        <button type="submit">Enviar Pedido para o WhatsApp</button>
+
+        <!-- Botão de Facebook -->
+        <a href="https://www.facebook.com/share/19YbGnEYD1/" target="_blank">
+            <button type="button" class="facebook-btn">Visite nossa página no Facebook</button>
+        </a>
+    </form>
+
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            // Coleta os valores do formulário
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var design = document.getElementById('design').value;
+            var quantity = document.getElementById('quantity').value;
+            var size = document.getElementById('size').value;
+            var payment = document.getElementById('payment').value;
+            
+            // Coleta o arquivo da imagem (se houver)
+            var photo = document.getElementById('photo').files[0];
+            var photoUrl = photo ? URL.createObjectURL(photo) : '';
+
+            // Cria a mensagem com os dados do formulário
+            var message = `Olá, gostaria de fazer um pedido de caneca personalizada:\n\nNome: ${name}\nE-mail: ${email}\nPersonalização: ${design}\nQuantidade: ${quantity}\nTamanho: ${size}\nForma de Pagamento: ${payment}\n`;
+
+            // Adiciona o link para a foto, se houver
+            if (photoUrl) {
+                message += `Foto: ${photoUrl}\n`;
+            }
+
+            // Número do WhatsApp (substitua pelo seu número)
+            var whatsappNumber = '5519992808312'; // Exemplo: 55 é o código do Brasil
+
+            // Formata o link do WhatsApp com a mensagem
+            var whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // Redireciona para o WhatsApp
+            window.open(whatsappLink, '_blank');
+        }
+    </script>
+</body>
+</html>
